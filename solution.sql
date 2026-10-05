@@ -1,22 +1,19 @@
-create database STUDENTINSERT;
-use STUDENTINSERT;
-create table student(studentID NUMBER PRIMARY KEY, studentname VARCHAR(30), departmentID NUMBER);
-CREATE OR REPLACE PROCEDURE InsertStudent(
-p_ID NUMBER,
-p_Name VARCHAR2,
-p_DepartmentID NUMBER
-)
-IS
-BEGIN
-INSERT INTO Student
-VALUES (p_ID, p_Name, p_DepartmentID);
-
-DBMS_OUTPUT.PUT_LINE('Student inserted successfully');
-END;
-/
+create database NUMBER;
+use NUMBER;
 SET SERVEROUTPUT ON;
+
+CREATE TABLE Numbers (
+Num NUMBER
+);
+
 BEGIN
-     insertstudent(1001, 'arun', 101);
+FOR i IN 1..10 LOOP
+INSERT INTO Numbers VALUES (i);
+DBMS_OUTPUT.PUT_LINE('Number = ' || i);
+END LOOP;
+
+COMMIT;
 END;
 /
-SELECT * FROM student;
+
+SELECT * FROM Numbers;
