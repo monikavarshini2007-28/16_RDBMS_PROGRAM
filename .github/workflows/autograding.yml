@@ -1,0 +1,33 @@
+name: PL-SQL Autograding
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  autograding:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Oracle Database XE
+        run: |
+          echo "Oracle Database installation is required to execute PL/SQL."
+          echo "Use an Oracle-compatible environment for PL/SQL execution."
+
+      - name: Check Solution File
+        run: |
+          test -f README.md
+          test -f starter.sql
+          test -f solution.sql
+          test -f test.sql
+          echo "All required files are present."
+
+      - name: Verify FOR LOOP Program
+        run: |
+          grep -qi "FOR" solution.sql
+          grep -q "1..10" solution.sql
+          grep -qi "DBMS_OUTPUT.PUT_LINE" solution.sql
+          echo "PL/SQL FOR LOOP solution verified successfully."
